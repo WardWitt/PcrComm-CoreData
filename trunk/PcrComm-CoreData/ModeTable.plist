@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>LSB</key>
+	<string>00</string>
+	<key>USB</key>
+	<string>01</string>
+	<key>AM</key>
+	<string>02</string>
+	<key>CW</key>
+	<string>03</string>
+	<key>FM</key>
+	<string>05</string>
+	<key>WFM</key>
+	<string>06</string>
+</dict>
+</plist>

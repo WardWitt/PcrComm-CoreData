@@ -10,7 +10,11 @@
 
 
 @interface WWPcrController : NSObject {
+	NSUserDefaults *defaults;
 	IBOutlet NSArrayController *entryController;
+	NSDictionary *modeTable;
+	NSDictionary *filterTable;
+
 }
 
 @end
