@@ -184,44 +184,28 @@ BOOL scanEnabled = FALSE;
 						change:(NSDictionary *)change
 					   context:(void *)context
 {
-//	NSArray * selectedObject = [object selectedObjects];
-//	NSLog(@"Selected item = %@",selectedObject);
-//	NSLog(@"Change = %@",change);
-//	NSLog(@"Context = %@",context);
-//	NSLog(@"keyPath = %@", keyPath);
+	NSArray * selectedObject = [[object selectedObjects] objectAtIndex:0];
 	
-//	if(!port) {
-//		// open a new port if we don't already have one
-//		[self initPort];
-//	}
+	if(!port) {
+		// open a new port if we don't already have one
+		[self initPort];
+	}
 	
-//	NSString *selectedFrequency = [selectedObject valueForKey:@"Frequency"];
-//	NSLog(@"Frequecy = %@", selectedFrequency);
-//	NSString *selectedMode = [selectedObject valueForKey:@"Mode"];
-//	NSLog(@"Mode = %@", selectedMode);
-//	NSString *selectedFilter = [selectedObject valueForKey:@"Filter"];
-//	NSLog(@"Filter = %@", selectedFilter);
+	NSString *selectedFrequency = [selectedObject valueForKey:@"Frequency"];
+	NSString *selectedMode = [selectedObject valueForKey:@"Mode"];
+	NSString *selectedFilter = [selectedObject valueForKey:@"Filter"];
 	
-	
-//	NSString *intFreq = [test stringByReplacingOccurrencesOfString:@"." withString:@""];
-//	NSLog(@"IntFreq = %@", intFreq);
-//	NSDictionary *selection = [NSDictionary dictionaryWithDictionary:[selectedObject objectAtIndex:0]];
-//	// strip decimal point
-//	NSRange frqRange = NSMakeRange(10 - [intFreq length], [intFreq length]);
-//	NSString *paddedFreq = [@"0000000000" stringByReplacingCharactersInRange:frqRange withString:intFreq];
-//	NSString *selMode = [modeTable objectForKey:[selection objectForKey:@"mode"]];
-//	NSString *selFilter = [filterTable objectForKey:[selection objectForKey:@"filter"]];
-//	NSString *tuning = [NSString stringWithFormat:@"K0%@%@%@00\r\n",paddedFreq, selMode, selFilter];
-//	NSLog(@"Radio tuned to %@", tuning);
-//	NSLog(@"output = %@", paddedFreq);
-}
-
-- (NSString *)selectedFrequency{
-	return selectedFrequency;
-}
-
-- (void)setSelectedFrequency:(NSString *)freq{
-	selectedFrequency = freq;
+	// strip decimal point
+	NSString *intFreq = [selectedFrequency stringByReplacingOccurrencesOfString:@"." withString:@""];
+	NSRange frqRange = NSMakeRange(10 - [intFreq length], [intFreq length]);
+	NSString *paddedFreq = [@"0000000000" stringByReplacingCharactersInRange:frqRange withString:intFreq];
+	NSString *selMode = [modeTable objectForKey:selectedMode];
+	NSString *selFilter = [filterTable objectForKey:selectedFilter];
+	NSString *tuning = [NSString stringWithFormat:@"K0%@%@%@00\r\n",paddedFreq, selMode, selFilter];
+	NSLog(@"Radio tuned to %@", tuning);
+	if([port isOpen]) { // in case an error occured while opening the port
+		[port writeString:tuning usingEncoding:NSUTF8StringEncoding error:NULL];
+	}
 }
 
 

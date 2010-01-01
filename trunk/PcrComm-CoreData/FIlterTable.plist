@@ -2,15 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>2.8k</key>
+	<key>2.8 kHz</key>
 	<string>00</string>
-	<key>6k</key>
+	<key>6 kHz</key>
 	<string>01</string>
-	<key>15k</key>
+	<key>15 kHz</key>
 	<string>02</string>
-	<key>50k</key>
+	<key>50 kHz</key>
 	<string>03</string>
-	<key>230k</key>
+	<key>230 kHz</key>
 	<string>04</string>
 </dict>
 </plist>

@@ -20,13 +20,7 @@
 	IBOutlet NSSlider *squelchSlider;
 	NSDictionary *modeTable;
 	NSDictionary *filterTable;
-	NSString *selectedFrequency;
-	NSString *selectedMode;
-	NSString *selectedFilter;
 }
-@property (nonatomic, retain) NSString *selectedFrequency;
-- (NSString *)selectedFrequency;
-- (void)setSelectedFrequency:(NSString *)freq;
 - (IBAction)afGain:(id)sender;
 - (IBAction)squelch:(id)sender;
 - (IBAction)power:(id)sender;
