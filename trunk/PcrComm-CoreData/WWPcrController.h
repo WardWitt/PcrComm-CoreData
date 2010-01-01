@@ -16,10 +16,25 @@
 	IBOutlet NSTableView *entryTableView;
 	IBOutlet NSLevelIndicator *sMeter;
 	IBOutlet NSLevelIndicator *centering;
+	IBOutlet NSSlider *volumeSlider;
+	IBOutlet NSSlider *squelchSlider;
 	NSDictionary *modeTable;
 	NSDictionary *filterTable;
-
+	NSString *selectedFrequency;
+	NSString *selectedMode;
+	NSString *selectedFilter;
 }
+@property (nonatomic, retain) NSString *selectedFrequency;
+- (NSString *)selectedFrequency;
+- (void)setSelectedFrequency:(NSString *)freq;
+- (IBAction)afGain:(id)sender;
+- (IBAction)squelch:(id)sender;
+- (IBAction)power:(id)sender;
+- (void)setVolume:(int)vol;
+- (void)setSquelch:(int)sq;
+- (void)powerUpRadio;
+- (void)powerDownRadio;
+- (void)commMode;
 
 - (void)setPort:(AMSerialPort *)newPort;
 - (void)initPort;

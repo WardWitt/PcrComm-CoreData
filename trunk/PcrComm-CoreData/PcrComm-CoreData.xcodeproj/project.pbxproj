@@ -72,16 +72,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				FE40825210ED36170046D06C /* AMSDKCompatibility.h */,
-				FE40825310ED36170046D06C /* AMSerialErrors.h */,
-				FE40825410ED36170046D06C /* AMSerialPort.h */,
-				FE40825510ED36170046D06C /* AMSerialPort.m */,
-				FE40825610ED36170046D06C /* AMSerialPortAdditions.h */,
-				FE40825710ED36170046D06C /* AMSerialPortAdditions.m */,
-				FE40825810ED36170046D06C /* AMSerialPortList.h */,
-				FE40825910ED36170046D06C /* AMSerialPortList.m */,
-				FE40825A10ED36170046D06C /* AMStandardEnumerator.h */,
-				FE40825B10ED36170046D06C /* AMStandardEnumerator.m */,
+				FEF639CB10ED6BE9008D965E /* AMSerialPort */,
 				77C8280B06725ACE000B614F /* PcrComm_CoreData_AppDelegate.h */,
 				77C8280C06725ACE000B614F /* PcrComm_CoreData_AppDelegate.m */,
 				FE9836DE10EAC4E70087439A /* WWPcrController.h */,
@@ -167,6 +158,23 @@
 				770B37EC0679A11B001EADE2 /* PcrComm_CoreData_DataModel.xcdatamodel */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		FEF639CB10ED6BE9008D965E /* AMSerialPort */ = {
+			isa = PBXGroup;
+			children = (
+				FE40825210ED36170046D06C /* AMSDKCompatibility.h */,
+				FE40825310ED36170046D06C /* AMSerialErrors.h */,
+				FE40825410ED36170046D06C /* AMSerialPort.h */,
+				FE40825510ED36170046D06C /* AMSerialPort.m */,
+				FE40825610ED36170046D06C /* AMSerialPortAdditions.h */,
+				FE40825710ED36170046D06C /* AMSerialPortAdditions.m */,
+				FE40825810ED36170046D06C /* AMSerialPortList.h */,
+				FE40825910ED36170046D06C /* AMSerialPortList.m */,
+				FE40825A10ED36170046D06C /* AMStandardEnumerator.h */,
+				FE40825B10ED36170046D06C /* AMStandardEnumerator.m */,
+			);
+			name = AMSerialPort;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

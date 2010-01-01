@@ -41,7 +41,6 @@ BOOL scanEnabled = FALSE;
 	{
 		[filterTable retain];
 	}
-	
 	return self;
 }
 
@@ -86,14 +85,146 @@ BOOL scanEnabled = FALSE;
     }
 }
 
+- (void)commMode
+{
+	Delay(10,NULL);
+	if(!port) {
+		// open a new port if we don't already have one
+		[self initPort];
+	}
+	if([port isOpen]) { // in case an error occured while opening the port
+		[port writeString:@"G301\r\n" usingEncoding:NSUTF8StringEncoding error:NULL];
+	}
+}
+
+- (IBAction)afGain:(id)sender
+{
+	volume = [sender intValue];
+	[defaults setInteger:volume forKey:@"savedVolume"];
+	[self setVolume:volume];
+}
+
+- (IBAction)squelch:(id)sender
+{
+	squelch = [sender intValue];
+	[defaults setInteger:squelch forKey:@"savedSquelch"];
+	[self setSquelch:squelch];
+}
+
+- (void)powerUpRadio
+{
+	NSError *theError;
+	if(!port) {
+		// open a new port if we don't already have one
+		[self initPort];
+	}
+	if([port isOpen]) { // in case an error occured while opening the port
+		[port writeString:@" H101\r\n" usingEncoding:NSUTF8StringEncoding error:&theError];
+	}
+	[self commMode];
+	//	[self bandScopeOn];
+}
+
+- (void)powerDownRadio
+{
+	NSError *theError;
+	if(!port) {
+		// open a new port if we don't already have one
+		[self initPort];
+	}
+	if([port isOpen]) { // in case an error occured while opening the port
+		[port writeString:@" H100\r\n" usingEncoding:NSUTF8StringEncoding error:&theError];
+	}
+}
+
+- (IBAction)power:(id)sender
+{
+	if ([sender intValue])
+	{
+		int volume = [defaults integerForKey:@"savedVolume"];
+		int squelch = [defaults integerForKey:@"savedSquelch"];
+		[self powerUpRadio];
+		[self setVolume:volume];
+		[volumeSlider setIntValue:volume];
+		[self setSquelch:squelch];
+		[squelchSlider setIntValue:squelch];
+	}
+	
+	else
+		[self powerDownRadio];
+}
+
+- (void)setVolume:(int)vol
+{
+	if(!port) {
+		// open a new port if we don't already have one
+		[self initPort];
+	}
+	if([port isOpen]) { // in case an error occured while opening the port
+		NSString * volumeCommand = [NSString stringWithFormat:@"J40%02X", vol];
+		[port writeString:volumeCommand usingEncoding:NSUTF8StringEncoding error:NULL];
+	}
+	
+}
+
+- (void)setSquelch:(int)sq
+{
+	if(!port) {
+		// open a new port if we don't already have one
+		[self initPort];
+	}
+	if([port isOpen]) { // in case an error occured while opening the port
+		NSString * squelchCommand = [NSString stringWithFormat:@"J41%02X", sq];
+		[port writeString:squelchCommand usingEncoding:NSUTF8StringEncoding error:NULL];
+	}
+}
+
 - (void)observeValueForKeyPath:(NSString *)keyPath
 					  ofObject:(id)object
 						change:(NSDictionary *)change
 					   context:(void *)context
 {
-	NSArray * selectedObject = [object selectedObjects];
-	NSLog(@"Selected item = %@",selectedObject);
-}	
+//	NSArray * selectedObject = [object selectedObjects];
+//	NSLog(@"Selected item = %@",selectedObject);
+//	NSLog(@"Change = %@",change);
+//	NSLog(@"Context = %@",context);
+//	NSLog(@"keyPath = %@", keyPath);
+	
+//	if(!port) {
+//		// open a new port if we don't already have one
+//		[self initPort];
+//	}
+	
+//	NSString *selectedFrequency = [selectedObject valueForKey:@"Frequency"];
+//	NSLog(@"Frequecy = %@", selectedFrequency);
+//	NSString *selectedMode = [selectedObject valueForKey:@"Mode"];
+//	NSLog(@"Mode = %@", selectedMode);
+//	NSString *selectedFilter = [selectedObject valueForKey:@"Filter"];
+//	NSLog(@"Filter = %@", selectedFilter);
+	
+	
+//	NSString *intFreq = [test stringByReplacingOccurrencesOfString:@"." withString:@""];
+//	NSLog(@"IntFreq = %@", intFreq);
+//	NSDictionary *selection = [NSDictionary dictionaryWithDictionary:[selectedObject objectAtIndex:0]];
+//	// strip decimal point
+//	NSRange frqRange = NSMakeRange(10 - [intFreq length], [intFreq length]);
+//	NSString *paddedFreq = [@"0000000000" stringByReplacingCharactersInRange:frqRange withString:intFreq];
+//	NSString *selMode = [modeTable objectForKey:[selection objectForKey:@"mode"]];
+//	NSString *selFilter = [filterTable objectForKey:[selection objectForKey:@"filter"]];
+//	NSString *tuning = [NSString stringWithFormat:@"K0%@%@%@00\r\n",paddedFreq, selMode, selFilter];
+//	NSLog(@"Radio tuned to %@", tuning);
+//	NSLog(@"output = %@", paddedFreq);
+}
+
+- (NSString *)selectedFrequency{
+	return selectedFrequency;
+}
+
+- (void)setSelectedFrequency:(NSString *)freq{
+	selectedFrequency = freq;
+}
+
+
 // ============================================================
 #pragma mark -
 #pragma mark Threaded methods
@@ -107,7 +238,6 @@ BOOL scanEnabled = FALSE;
 - (void)parseRadio
 {
 	NSAutoreleasePool *localAutoreleasePool = [[NSAutoreleasePool alloc] init];
-	int c = 0;
 	NSError *theError;
 	while(1)
 	{
