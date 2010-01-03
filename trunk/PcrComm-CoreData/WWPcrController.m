@@ -47,6 +47,8 @@ BOOL scanEnabled = FALSE;
 - (void)awakeFromNib{
 	defaults = [NSUserDefaults standardUserDefaults];
     [[entryTableView window]setFrameAutosaveName:@"appWindow"];	// save and restore the location of the window
+	[entryTableView setAutosaveName:@"EntryTableColumns"];
+	[entryTableView setAutosaveTableColumns:YES];
 	[entryController addObserver:self forKeyPath:@"selection.entry" options:NSKeyValueObservingOptionNew context:NULL];
 	[self initPort];
 	[self readRadioInBackground];
@@ -95,6 +97,19 @@ BOOL scanEnabled = FALSE;
 	if([port isOpen]) { // in case an error occured while opening the port
 		// set comm mode to Fast transfer mode
 		[port writeString:@"G301\r\n" usingEncoding:NSUTF8StringEncoding error:NULL];
+	}
+}
+- (void)attenuator:(BOOL)state{
+	if (!port) {
+		// open a new port if we don't already have one
+		[self initPort];
+	}
+	if([port isOpen]) { // in case an error occured while opening the port
+		if (state) {
+			[port writeString:@"J4701\r\n" usingEncoding:NSUTF8StringEncoding error:NULL];
+		} else {
+			[port writeString:@"J4700\r\n" usingEncoding:NSUTF8StringEncoding error:NULL];
+		}
 	}
 }
 
@@ -189,11 +204,10 @@ BOOL scanEnabled = FALSE;
 		// open a new port if we don't already have one
 		[self initPort];
 	}
-	
 	NSString *selectedFrequency = [selectedObject valueForKey:@"Frequency"];
 	NSString *selectedMode = [selectedObject valueForKey:@"Mode"];
 	NSString *selectedFilter = [selectedObject valueForKey:@"Filter"];
-	
+	BOOL att = [[selectedObject valueForKey:@"Att"]boolValue];
 	// strip decimal point
 	NSString *intFreq = [selectedFrequency stringByReplacingOccurrencesOfString:@"." withString:@""];
 	NSRange frqRange = NSMakeRange(10 - [intFreq length], [intFreq length]);
@@ -204,9 +218,13 @@ BOOL scanEnabled = FALSE;
 	NSLog(@"Radio tuned to %@", tuning);
 	if([port isOpen]) { // in case an error occured while opening the port
 		[port writeString:tuning usingEncoding:NSUTF8StringEncoding error:NULL];
+		[self attenuator:att];
 	}
 }
 
+//NSSortDescriptor *sorter = [[NSSortDescriptor alloc]
+//							initWithKey:@"ibIdentifier" ascending:YES selector:@selector
+//							(compareSomeBoundValue:)];
 
 // ============================================================
 #pragma mark -

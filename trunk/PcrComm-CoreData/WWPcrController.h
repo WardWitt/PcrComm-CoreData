@@ -29,6 +29,7 @@
 - (void)powerUpRadio;
 - (void)powerDownRadio;
 - (void)commMode;
+- (void)attenuator:(BOOL)state;
 
 - (void)setPort:(AMSerialPort *)newPort;
 - (void)initPort;
