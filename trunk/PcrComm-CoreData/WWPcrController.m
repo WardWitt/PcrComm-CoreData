@@ -93,6 +93,7 @@ BOOL scanEnabled = FALSE;
 		[self initPort];
 	}
 	if([port isOpen]) { // in case an error occured while opening the port
+		// set comm mode to Fast transfer mode
 		[port writeString:@"G301\r\n" usingEncoding:NSUTF8StringEncoding error:NULL];
 	}
 }
@@ -149,7 +150,6 @@ BOOL scanEnabled = FALSE;
 		[self setSquelch:squelch];
 		[squelchSlider setIntValue:squelch];
 	}
-	
 	else
 		[self powerDownRadio];
 }
@@ -164,7 +164,6 @@ BOOL scanEnabled = FALSE;
 		NSString * volumeCommand = [NSString stringWithFormat:@"J40%02X", vol];
 		[port writeString:volumeCommand usingEncoding:NSUTF8StringEncoding error:NULL];
 	}
-	
 }
 
 - (void)setSquelch:(int)sq
@@ -233,7 +232,7 @@ BOOL scanEnabled = FALSE;
 		{
 			NSData *firstByte = [port readBytes:1 error:&theError];
 			[firstByte getBytes:&prefix length:1];
-			//NSLog(@"Lost sync with radio");
+			// NSLog(@"Lost sync with radio %@",firstByte);
 		}
 		switch (prefix) {
 			case 'G': 
@@ -251,17 +250,6 @@ BOOL scanEnabled = FALSE;
 			default:
 				NSLog(@"Unknown command %c",prefix);
 		}
-		//		// Flush and create a new autorelease pool ever so often
-		//		c++;
-		//		NSString *count = [NSString stringWithFormat:@"Count = %i", c];
-		//		[outputTextView setString:count];
-		//		if (c > 1024)
-		//		{
-		//			[localAutoreleasePool release];
-		//			NSAutoreleasePool *localAutoreleasePool = [[NSAutoreleasePool alloc] init];
-		//			NSLog(@"Just purged the autoReleasePool");
-		//			c = 0;
-		//		}
 	}
 }
 
