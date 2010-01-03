@@ -12,8 +12,8 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="813"/>
 			<integer value="29"/>
+			<integer value="2"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -254,7 +254,7 @@
 																<bool key="EncodedWithXMLCoder">YES</bool>
 																<object class="NSTableColumn" id="1042274188">
 																	<string key="NSIdentifier">name</string>
-																	<double key="NSWidth">34.59912109375</double>
+																	<double key="NSWidth">173.59912109375</double>
 																	<double key="NSMinWidth">34.59912109375</double>
 																	<double key="NSMaxWidth">10000</double>
 																	<object class="NSTableHeaderCell" key="NSHeaderCell">
@@ -566,7 +566,7 @@
 																</object>
 																<object class="NSTableColumn" id="290625543">
 																	<string key="NSIdentifier">note</string>
-																	<double key="NSWidth">29.1259765625</double>
+																	<double key="NSWidth">168.1259765625</double>
 																	<double key="NSMinWidth">29.1259765625</double>
 																	<double key="NSMaxWidth">10000</double>
 																	<object class="NSTableHeaderCell" key="NSHeaderCell">
@@ -928,7 +928,7 @@
 								<string key="NSContents">Power</string>
 								<reference key="NSSupport" ref="905868514"/>
 								<reference key="NSControlView" ref="569782870"/>
-								<int key="NSButtonFlags">-2038284033</int>
+								<int key="NSButtonFlags">914505983</int>
 								<int key="NSButtonFlags2">129</int>
 								<string key="NSAlternateContents"/>
 								<string key="NSKeyEquivalent"/>
@@ -3117,14 +3117,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">entryController</string>
-						<reference key="source" ref="516205908"/>
-						<reference key="destination" ref="665448479"/>
-					</object>
-					<int key="connectionID">874</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">centering</string>
 						<reference key="source" ref="516205908"/>
 						<reference key="destination" ref="712181365"/>
@@ -3186,6 +3178,14 @@
 						<reference key="destination" ref="593953985"/>
 					</object>
 					<int key="connectionID">903</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">entryController</string>
+						<reference key="source" ref="516205908"/>
+						<reference key="destination" ref="665448479"/>
+					</object>
+					<int key="connectionID">904</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -4976,7 +4976,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">903</int>
+			<int key="maxID">904</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

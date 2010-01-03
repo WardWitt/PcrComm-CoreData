@@ -99,6 +99,7 @@ BOOL scanEnabled = FALSE;
 		[port writeString:@"G301\r\n" usingEncoding:NSUTF8StringEncoding error:NULL];
 	}
 }
+
 - (void)attenuator:(BOOL)state{
 	if (!port) {
 		// open a new port if we don't already have one

@@ -15,7 +15,7 @@
 			8D1107260486CEB800E47090 /* PcrComm-CoreData */,
 		);
 		breakpoints = (
-			FEDB253F10EDB46000C31C81 /* WWPcrController.m:207 */,
+			FEDB253F10EDB46000C31C81 /* WWPcrController.m:208 */,
 		);
 		codeSenseManager = FE85846B10E70C520039A2BF /* Code sense */;
 		executables = (
@@ -48,6 +48,7 @@
 			PBXWorkspaceStateSaveDate = 284186856;
 		};
 		perUserProjectItems = {
+			FE20AA7310F05B5600BA4B75 /* PBXTextBookmark */ = FE20AA7310F05B5600BA4B75 /* PBXTextBookmark */;
 			FE20D00310EE5E7E00A58E62 = FE20D00310EE5E7E00A58E62 /* PlistBookmark */;
 			FE27E9DF10F03D6A009D269B = FE27E9DF10F03D6A009D269B /* PBXBookmark */;
 			FE27EA0310F043ED009D269B = FE27EA0310F043ED009D269B /* XDModelBookmark */;
@@ -244,6 +245,16 @@
 			FE85845E10E70C340039A2BF /* PcrComm-CoreData */,
 		);
 	};
+	FE20AA7310F05B5600BA4B75 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FE9836DF10EAC4E70087439A /* WWPcrController.m */;
+		name = "WWPcrController.m: 102";
+		rLen = 0;
+		rLoc = 2477;
+		rType = 0;
+		vrLen = 926;
+		vrLoc = 0;
+	};
 	FE20D00310EE5E7E00A58E62 /* PlistBookmark */ = {
 		isa = PlistBookmark;
 		fRef = FE40826C10ED37020046D06C /* FIlterTable.plist */;
@@ -316,7 +327,7 @@
 		fRef = FE9836DF10EAC4E70087439A /* WWPcrController.m */;
 		name = "WWPcrController.m: 208";
 		rLen = 0;
-		rLoc = 5419;
+		rLoc = 5420;
 		rType = 0;
 		vrLen = 982;
 		vrLoc = 3413;
@@ -415,12 +426,12 @@
 	};
 	FE9836DF10EAC4E70087439A /* WWPcrController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {754, 5408}}";
-			sepNavSelRange = "{5361, 0}";
-			sepNavVisRange = "{5782, 621}";
+			sepNavIntBoundsRect = "{{0, 0}, {1012, 5785}}";
+			sepNavSelRange = "{2477, 0}";
+			sepNavVisRange = "{0, 926}";
 		};
 	};
-	FEDB253F10EDB46000C31C81 /* WWPcrController.m:207 */ = {
+	FEDB253F10EDB46000C31C81 /* WWPcrController.m:208 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -432,7 +443,7 @@
 		functionName = "-observeValueForKeyPath:ofObject:change:context:";
 		hitCount = 1;
 		ignoreCount = 0;
-		lineNumber = 207;
+		lineNumber = 208;
 		location = "PcrComm-CoreData";
 		modificationTime = 284181069.416124;
 		originalNumberOfMultipleMatches = 1;
