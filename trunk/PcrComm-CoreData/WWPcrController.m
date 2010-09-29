@@ -56,12 +56,24 @@ BOOL scanEnabled = FALSE;
 
 - (void)initPort
 {
-	//NSString *deviceName = @"/dev/cu.KeySerial1";
-	NSString *deviceName = @"/dev/cu.usbserial-A20e1rUS";
+	NSMutableArray *availPorts = [NSMutableArray array];
+	NSEnumerator *enumerator = [AMSerialPortList portEnumerator];
+	AMSerialPort *aPort;
+	while (aPort = [enumerator nextObject]) {
+		[availPorts addObject:[aPort bsdPath]];
+	}
+	[serialPopUp removeAllItems];
+	[serialPopUp addItemsWithTitles:availPorts];
+	
+	NSString *deviceName = @"/dev/cu.KeySerial1";
+	//NSString *deviceName = @"/dev/cu.usbserial-A20e1rUS";
+	
+	
 	[self setPort:[[[AMSerialPort alloc] init:deviceName withName:deviceName type:(NSString*)CFSTR(kIOSerialBSDModemType)] autorelease]];
 	
 	// register as self as delegate for port
 	[port setDelegate:self];
+	
 	
 	// open port - may take a few seconds ...
 	if ([port open]) {

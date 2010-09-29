@@ -20,6 +20,7 @@
 	IBOutlet NSSlider *squelchSlider;
 	NSDictionary *modeTable;
 	NSDictionary *filterTable;
+	IBOutlet NSPopUpButton *serialPopUp;
 }
 - (IBAction)afGain:(id)sender;
 - (IBAction)squelch:(id)sender;
