@@ -65,9 +65,9 @@ BOOL scanEnabled = FALSE;
 	[serialPopUp removeAllItems];
 	[serialPopUp addItemsWithTitles:availPorts];
 	
-	NSString *deviceName = @"/dev/cu.KeySerial1";
+	//NSString *deviceName = @"/dev/cu.KeySerial1";
 	//NSString *deviceName = @"/dev/cu.usbserial-A20e1rUS";
-	
+    NSString *deviceName = [serialPopUp titleOfSelectedItem];	
 	
 	[self setPort:[[[AMSerialPort alloc] init:deviceName withName:deviceName type:(NSString*)CFSTR(kIOSerialBSDModemType)] autorelease]];
 	
